@@ -1,6 +1,9 @@
 package peaksoft.model;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.context.annotation.Bean;
+import org.springframework.objenesis.instantiator.basic.FailingInstantiator;
 import org.springframework.stereotype.Component;
 
 @Component
@@ -8,6 +11,7 @@ public class AnimalsCage {
 
     @Autowired
     private Animal animal;
+    private final Timer timer = new Timer();
 
     public void whatAnimalSay() {
         System.out.println("Say:");
@@ -16,4 +20,10 @@ public class AnimalsCage {
         System.out.println(new Timer().getTime());
         System.out.println("________________________");
     }
+
+
+   @Bean
+    public Timer getTimer(){
+        return timer;
+   }
 }
